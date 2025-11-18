@@ -10,11 +10,13 @@ namespace animation_lesson
         private SpriteBatch _spriteBatch;
 
         Rectangle window;
-        Rectangle tribbleOrangeRect, tribbleGreyRect;
+        Rectangle tribbleOrangeRect, tribbleGreyRect, tribbleCreamRect, tribbleBrownRect;
 
-        Texture2D tribbleOrangeTexture, tribbleGreyTexture;
+        Texture2D tribbleOrangeTexture, tribbleGreyTexture, tribbleCreamTexture, tribbleBrownTexture;
 
-        Vector2 tribbleOrangeSpeed;
+        Vector2 tribbleOrangeSpeed, tribbleGreySpeed, tribbleCreamSpeed, tribbleBrownSpeed;
+
+        Color backColor;
 
         public Game1()
         {
@@ -32,8 +34,16 @@ namespace animation_lesson
             _graphics.PreferredBackBufferHeight = window.Height;
             _graphics.ApplyChanges();
 
-            tribbleOrangeRect = new Rectangle(300, 10, 100, 100);
+            tribbleOrangeRect = new Rectangle(275, 75, 100, 100);
             tribbleOrangeSpeed = new Vector2(2, 1);
+            tribbleBrownRect = new Rectangle(500, 10, 100, 100);
+            tribbleBrownSpeed = new Vector2(2, 1);
+            tribbleGreyRect = new Rectangle(300, 300, 100, 100);
+            tribbleGreySpeed = new Vector2(2, 1);
+            tribbleCreamRect = new Rectangle(500, 500, 100, 100);
+            tribbleCreamSpeed = new Vector2(2, 1);
+
+            backColor = Color.LightPink;
 
             base.Initialize();
         }
@@ -45,6 +55,9 @@ namespace animation_lesson
             // TODO: use this.Content to load your game content here
 
             tribbleOrangeTexture = Content.Load<Texture2D>("tribbleOrange");
+            tribbleBrownTexture = Content.Load<Texture2D>("tribbleBrown");
+            tribbleGreyTexture = Content.Load<Texture2D>("tribbleGrey");
+            tribbleCreamTexture = Content.Load<Texture2D>("tribbleCream");
         }
 
         protected override void Update(GameTime gameTime)
@@ -65,13 +78,49 @@ namespace animation_lesson
                 tribbleOrangeSpeed.Y *= -1;
             }
 
+            tribbleBrownRect.X += (int)tribbleBrownSpeed.X;
+            tribbleBrownRect.Y += (int)tribbleBrownSpeed.Y;
+            if (tribbleBrownRect.Right > window.Width || tribbleBrownRect.Left < 0)
+            {
+                tribbleBrownSpeed.X *= -1;
+            }
+            if (tribbleBrownRect.Top < 0 || tribbleBrownRect.Bottom > window.Height)
+            {
+                tribbleBrownSpeed.Y *= -1;
+            }
 
-                base.Update(gameTime);
+            tribbleCreamRect.X += (int)tribbleCreamSpeed.X;
+            tribbleCreamRect.Y += (int)tribbleCreamSpeed.Y;
+            if (tribbleCreamRect.Right > window.Width || tribbleCreamRect.Left < 0)
+            {
+                tribbleCreamSpeed.X *= -1;
+                backColor = Color.Purple;
+
+            }
+            if (tribbleCreamRect.Top < 0 || tribbleCreamRect.Bottom > window.Height)
+            {
+                tribbleCreamSpeed.Y *= -1;
+
+            }
+
+            tribbleGreyRect.X += (int)tribbleGreySpeed.X;
+            tribbleGreyRect.Y += (int)tribbleGreySpeed.Y;
+            if (tribbleGreyRect.Right > window.Width || tribbleGreyRect.Left < 0)
+            {
+                tribbleGreySpeed.X *= -1;
+            }
+            if (tribbleGreyRect.Top < 0 || tribbleGreyRect.Bottom > window.Height)
+            {
+                tribbleGreySpeed.Y *= -1;
+            }
+
+
+            base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.LightPink);
+            GraphicsDevice.Clear(backColor);
 
 
             // TODO: Add your drawing code here
@@ -79,6 +128,9 @@ namespace animation_lesson
             _spriteBatch.Begin();
 
             _spriteBatch.Draw(tribbleOrangeTexture, tribbleOrangeRect, Color.White);
+            _spriteBatch.Draw(tribbleGreyTexture, tribbleGreyRect, Color.White);
+            _spriteBatch.Draw(tribbleCreamTexture, tribbleCreamRect, Color.White);
+            _spriteBatch.Draw(tribbleBrownTexture, tribbleBrownRect, Color.White);
 
             _spriteBatch.End();
 
