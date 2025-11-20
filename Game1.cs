@@ -41,7 +41,7 @@ namespace animation_lesson
             tribbleGreyRect = new Rectangle(300, 300, 100, 100);
             tribbleGreySpeed = new Vector2(2, 1);
             tribbleCreamRect = new Rectangle(500, 500, 100, 100);
-            tribbleCreamSpeed = new Vector2(2, 1);
+            tribbleCreamSpeed = new Vector2(0, 3);
 
             backColor = Color.LightPink;
 
@@ -72,10 +72,12 @@ namespace animation_lesson
             if (tribbleOrangeRect.Right > window.Width || tribbleOrangeRect.Left < 0)
             {
                 tribbleOrangeSpeed.X *= -1;
+                backColor = Color.LightPink;
             }
             if (tribbleOrangeRect.Top < 0 || tribbleOrangeRect.Bottom > window.Height)
             {
                 tribbleOrangeSpeed.Y *= -1;
+                backColor = Color.LightPink;
             }
 
             tribbleBrownRect.X += (int)tribbleBrownSpeed.X;
@@ -83,10 +85,12 @@ namespace animation_lesson
             if (tribbleBrownRect.Right > window.Width || tribbleBrownRect.Left < 0)
             {
                 tribbleBrownSpeed.X *= -1;
+                backColor = Color.Pink;
             }
             if (tribbleBrownRect.Top < 0 || tribbleBrownRect.Bottom > window.Height)
             {
                 tribbleBrownSpeed.Y *= -1;
+                backColor = Color.Pink;
             }
 
             tribbleCreamRect.X += (int)tribbleCreamSpeed.X;
@@ -100,6 +104,7 @@ namespace animation_lesson
             if (tribbleCreamRect.Top < 0 || tribbleCreamRect.Bottom > window.Height)
             {
                 tribbleCreamSpeed.Y *= -1;
+                backColor = Color.Purple;
 
             }
 
@@ -108,10 +113,12 @@ namespace animation_lesson
             if (tribbleGreyRect.Right > window.Width || tribbleGreyRect.Left < 0)
             {
                 tribbleGreySpeed.X *= -1;
+                backColor = Color.LightSkyBlue;
             }
             if (tribbleGreyRect.Top < 0 || tribbleGreyRect.Bottom > window.Height)
             {
                 tribbleGreySpeed.Y *= -1;
+                backColor = Color.LightSkyBlue;
             }
 
 
