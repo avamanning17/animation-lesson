@@ -13,12 +13,25 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin gameOver.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:gameOver.mp3
+
 #begin introText.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:introText.spritefont
+
+#begin outro.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:outro.spritefont
 
 #begin tribble_intro.jpg
 /importer:TextureImporter
@@ -31,6 +44,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:tribble_intro.jpg
+
+#begin tribble_Outro.jfif
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:tribble_Outro.jfif
 
 #begin tribbleBrown.png
 /importer:TextureImporter

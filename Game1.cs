@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.IO;
@@ -21,11 +22,13 @@ namespace animation_lesson
 
         Screen screen;
 
-        SpriteFont introText;
+        SoundEffect gameOver;
+
+        SpriteFont introText, outroText;
 
         MouseState mouseState;
 
-        Texture2D introTexture;
+        Texture2D introTexture, outroTexture;
 
         Rectangle tribbleOrangeRect, tribbleGreyRect, tribbleCreamRect, tribbleBrownRect;
 
@@ -52,6 +55,7 @@ namespace animation_lesson
             _graphics.ApplyChanges();
 
             screen = Screen.Intro;
+            //screen = Screen.Outro;
 
             tribbleOrangeRect = new Rectangle(275, 75, 100, 100);
             tribbleOrangeSpeed = new Vector2(2, 1);
@@ -79,6 +83,10 @@ namespace animation_lesson
             tribbleCreamTexture = Content.Load<Texture2D>("tribbleCream");
             introTexture = Content.Load<Texture2D>("tribble_intro");
             introText = Content.Load<SpriteFont>("introText");
+            outroTexture = Content.Load<Texture2D>("tribble_Outro");
+            outroText = Content.Load<SpriteFont>("outro");
+
+            gameOver = Content.Load<SoundEffect>("gameOver");
         }
 
         protected override void Update(GameTime gameTime)
@@ -97,6 +105,9 @@ namespace animation_lesson
             }
             else if (screen == Screen.TribbleYard)
             {
+
+                
+
                 tribbleOrangeRect.X += (int)tribbleOrangeSpeed.X;
                 tribbleOrangeRect.Y += (int)tribbleOrangeSpeed.Y;
                 if (tribbleOrangeRect.Right > window.Width || tribbleOrangeRect.Left < 0)
@@ -151,12 +162,19 @@ namespace animation_lesson
                     backColor = Color.LightSkyBlue;
                 }
 
-
-
+                if (mouseState.RightButton == ButtonState.Pressed)
+                {
+                    screen = Screen.Outro;
+                    gameOver.Play();
+                }
+            }
+            else if (screen == Screen.Outro)
+            {
+              
             }
 
 
-                base.Update(gameTime);
+            base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -168,12 +186,17 @@ namespace animation_lesson
 
             _spriteBatch.Begin();
 
-           if (screen== Screen.Intro)
+            if (screen== Screen.Intro)
             {
                 _spriteBatch.Draw(introTexture, window, Color.White);
-                _spriteBatch.DrawString(introText, "To start, Left Click", new Vector2(350, 400), Color.White);
+                _spriteBatch.DrawString(introText, "To start, Left Click", new Vector2(300, 400), Color.White);
             }
-           else if (screen== Screen.TribbleYard)
+            else if (screen == Screen.Outro)
+            {
+                _spriteBatch.Draw(outroTexture, window, Color.White);
+                _spriteBatch.DrawString(outroText, "Game over, Press esc to leave game", new Vector2(200, 400), Color.White);
+            }
+            else if (screen== Screen.TribbleYard)
             {
                 _spriteBatch.Draw(tribbleOrangeTexture, tribbleOrangeRect, Color.White);
                 _spriteBatch.Draw(tribbleGreyTexture, tribbleGreyRect, Color.White);
